@@ -1,0 +1,34 @@
+def dec_to_dms(dec):
+    deg = int(dec)
+    dec = dec - deg
+    min = int(60 * dec)
+    dec = 60 * dec - min
+    sec = int(60 * dec)
+    dec = 60 * dec - sec
+    thous = int(1000 * dec)
+    if deg < 20:
+        dir = 'E'
+    else:
+        dir = 'N'
+    deg = str(deg)
+    while len(deg) < 3:
+        deg = '0' + deg
+    min = str(min)
+    while len(min) < 2:
+        min = '0' + min
+    sec = str(sec)
+    while len(sec) < 2:
+        sec = '0' + sec
+    thous = str(thous)
+    while len(thous) < 3:
+        thous = '0' + thous
+    l = [dir + str(deg), str(min), str(sec), str(thous)]
+    return '.'.join(l)
+
+
+def dms_to_dec(x):
+    deg = int(x[1:4])
+    minute = int(x[5:7]) / 60
+    sec = int(x[8:10]) / 3600
+    thous = int(x[11:]) / 1000 / 3600
+    return deg + minute + sec + thous
