@@ -19,7 +19,10 @@ def main(lat1, lon1, lat2, lon2, n, txt):
         upper = c1 + (2 * i + 1) * delta
         l1, l2 = lower[0], lower[1]
         u1, u2 = upper[0], upper[1]
-        print(dec_to_dms(l2), dec_to_dms(l1), dec_to_dms(u2), dec_to_dms(u1), txt)
+        if txt is None:
+            print(dec_to_dms(l2), dec_to_dms(l1), dec_to_dms(u2), dec_to_dms(u1))
+        else:
+            print(dec_to_dms(l2), dec_to_dms(l1), dec_to_dms(u2), dec_to_dms(u1), txt)
 
 
 if __name__ == '__main__':
@@ -29,6 +32,6 @@ if __name__ == '__main__':
     parser.add_argument('lat2', type=str, help='Latitude of first point')
     parser.add_argument('lon2', type=str, help='Longitude of first point')
     parser.add_argument('n', type=int, help='Number of dashes')
-    parser.add_argument('txt', type=str, help='Color definition')
+    parser.add_argument('-txt', type=str, help='Colour definition', default=None)
     args = parser.parse_args()
     main(args.lat1, args.lon1, args.lat2, args.lon2, args.n, args.txt)
